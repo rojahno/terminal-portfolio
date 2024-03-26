@@ -33,9 +33,9 @@ export const handleCommand = (
     default:
       setHistory([
         ...history,
-        <PathBar command={text} />,
-        <UserText command={text} />,
-        <TerminaErrorText command={text} />,
+        <PathBar key={'pathbar-handler'} command={text} />,
+        <UserText key={'usertext-handler'} command={text} />,
+        <TerminaErrorText key={'terminalErrorText-handler'} command={text} />,
       ])
   }
 }
@@ -52,9 +52,9 @@ function listCommands(
 ) {
   setHistory([
     ...history,
-    <PathBar command={text} />,
-    <UserText command={text} />,
-    <Commands />,
+    <PathBar key={'pathbar-list-commands'} command={text} />,
+    <UserText key={'usertext-list-commands'} command={text} />,
+    <Commands key={'commands-list-commands'} />,
   ])
 }
 
@@ -65,9 +65,9 @@ function about(
 ) {
   setHistory([
     ...history,
-    <PathBar command={text} />,
-    <UserText command={text} />,
-    <About />,
+    <PathBar key={'about-handler'} command={text} />,
+    <UserText key={'user-text-about'} command={text} />,
+    <About key={'about-about'} />,
   ])
 }
 
@@ -78,9 +78,9 @@ function projects(
 ) {
   setHistory([
     ...history,
-    <PathBar command={text} />,
-    <UserText command={text} />,
-    <Projects />,
+    <PathBar key={'pathbar-projects'} command={text} />,
+    <UserText key={'user-text-projects'} command={text} />,
+    <Projects key={'projects-projects'} />,
   ])
 }
 
@@ -91,8 +91,8 @@ function skills(
 ) {
   setHistory([
     ...history,
-    <PathBar command={text} />,
-    <UserText command={text} />,
-    <Skills />,
+    <PathBar key={'pathBarr-skills'} command={text} />,
+    <UserText key={'userText-Skills'} command={text} />,
+    <Skills key={'skills-skills'} />,
   ])
 }

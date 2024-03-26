@@ -36,11 +36,13 @@ function Screen({ children }: ScreenProps) {
   const [index, setIndex] = useState(0)
   const inputRef = React.useRef<HTMLInputElement>(null)
   const [history, setHistory] = useState<React.ReactNode[]>([
-    <TerminalText>Today is, {new Date().toDateString()}</TerminalText>,
-    <Welcome />,
-    <PathBar command='commands' />,
-    <UserText command='commands' />,
-    <Commands />,
+    <TerminalText key={'first terminal text'}>
+      Today is, {new Date().toDateString()}
+    </TerminalText>,
+    <Welcome key={'welcome'} />,
+    <PathBar key={'pathbar'} command='commands' />,
+    <UserText key={'useText'} command='commands' />,
+    <Commands key={'commands'} />,
   ])
 
   useEffect(() => {
