@@ -4,10 +4,9 @@ import { Tab } from './Tab'
 import { Circle } from './Circle'
 import { TerminalText } from './TerminalText'
 import { PathBar } from './PathBar'
-import { UserText } from './UserText'
 import { UserInput } from './UserInput'
-import { Commands } from './Commands'
 import { handleCommand } from '@/utils/CommandHelper'
+import { Typewriter } from '@/utils/Typewriter'
 
 interface TerminalProps {
   children?: React.ReactNode
@@ -35,15 +34,54 @@ function Screen({ children }: ScreenProps) {
   const [commandHistory, setCommandHistory] = useState<string[]>([])
   const [index, setIndex] = useState(0)
   const inputRef = React.useRef<HTMLInputElement>(null)
-  const [history, setHistory] = useState<React.ReactNode[]>([
-    <TerminalText key={'first terminal text'}>
-      Today is, {new Date().toDateString()}
+  const [currentIndex, setCurrentIndex] = useState(0)
+  const [commandIndex, setCommandIndex] = useState(0)
+  const startText = [
+    <TerminalText key={'terminalText'}>
+      <Typewriter text={'Today is, ' + new Date().toDateString()} delay={100} />
     </TerminalText>,
-    <Welcome key={'welcome'} />,
-    <PathBar key={'pathbar'} command='commands' />,
-    <UserText key={'useText'} command='commands' />,
-    <Commands key={'commands'} />,
-  ])
+
+    <Welcome key={'welcome'}>
+      <Typewriter text='Welcome' delay={100} />
+    </Welcome>,
+    <TerminalText key={'terminalText2'}>
+      <Typewriter text='Type commands to see available commands.' delay={50} />
+    </TerminalText>,
+    <></>,
+  ]
+
+  const [history, setHistory] = useState<React.ReactNode[]>([])
+
+  useEffect(() => {
+    const delay = 3000
+    if (currentIndex < startText.length) {
+      const timeout = setTimeout(() => {
+        setHistory((prevHistory) => [...prevHistory, startText[currentIndex]])
+        setCurrentIndex((prevIndex) => prevIndex + 1)
+      }, delay)
+
+      return () => clearTimeout(timeout)
+    }
+  }, [currentIndex])
+
+  useEffect(() => {
+    // Type the command
+    const delay = 100
+    const text = 'commands'
+
+    if (commandIndex < text.length && currentIndex === startText.length) {
+      const timeout = setTimeout(() => {
+        setCommand((prevCommand) => prevCommand + text[commandIndex])
+        setCommandIndex((prevIndex) => prevIndex + 1)
+      }, delay)
+      return () => clearTimeout(timeout)
+    }
+
+    if (commandIndex === text.length) {
+      handleCommand(history, setHistory, text)
+      setCommand('')
+    }
+  }, [commandIndex, currentIndex])
 
   useEffect(() => {
     inputRef.current?.scrollIntoView()
@@ -54,8 +92,8 @@ function Screen({ children }: ScreenProps) {
     e.preventDefault()
     setCommandHistory([...commandHistory, command])
     setIndex(commandHistory.length)
-    setCommand('')
     handleCommand(history, setHistory, command)
+    setCommand('')
   }
 
   function handleKeyDown(e: React.KeyboardEvent<HTMLInputElement>) {
@@ -93,11 +131,14 @@ function Screen({ children }: ScreenProps) {
     </div>
   )
 }
+interface WelcomeProps {
+  children?: React.ReactNode
+}
 
-function Welcome() {
+function Welcome({ children }: WelcomeProps) {
   return (
     <div>
-      <h1 className=' text-4xl font-bold uppercase'>Welcome!</h1>
+      <h1 className=' text-4xl font-bold uppercase'>{children}</h1>
     </div>
   )
 }
