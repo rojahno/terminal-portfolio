@@ -5,7 +5,7 @@ import Image from 'next/image'
 import { GithubIcon } from '@/icons/github'
 import { LinkedInIcon } from '@/icons/linkedin'
 import Link from 'next/link'
-import profilePicture from './profile_picture.jpeg'
+import profilePicture from './../../../public/profile_picture.jpeg'
 
 const profileText =
   'Hi there, I am a Software developer who currently works at Stacc. I am passionate about technology and love to learn new things.'
@@ -57,7 +57,13 @@ export const About = () => {
     <div className='p-2 w-full flex flex-col gap-2'>
       <div className=''>
         <div id='img-container'>
-          <Image id='profile-image' src={profilePicture} alt='' />
+          <Image
+            id='profile-image'
+            width={6}
+            height={6}
+            src={profilePicture}
+            alt=''
+          />
           <h2 id='profile-name' ref={nameRef}>
             HELLO,
             <br />
