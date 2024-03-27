@@ -1,12 +1,11 @@
 'use client'
 import './about.css'
 import { useEffect, useRef, useState } from 'react'
-import wallpaper from '../../../public/wallpaper.jpg'
 import Image from 'next/image'
 import { GithubIcon } from '@/icons/github'
 import { LinkedInIcon } from '@/icons/linkedin'
 import Link from 'next/link'
-import profilePicture from '../../../public/profile_picture.jpeg'
+import profilePicture from './profile_picture.jpeg'
 
 const profileText =
   'Hi there, I am a Software developer who currently works at Stacc. I am passionate about technology and love to learn new things.'
