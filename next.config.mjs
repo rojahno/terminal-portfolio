@@ -1,6 +1,6 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-    // basePath: '/terminal-portfolio',
+    basePath: '/terminal-portfolio',
     output: 'export'
 };
 
