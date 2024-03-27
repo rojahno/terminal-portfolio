@@ -97,7 +97,7 @@ function Screen({ children }: ScreenProps) {
 function Welcome() {
   return (
     <div>
-      <h1 className=' text-4xl font-bold uppercase'>Welcome</h1>
+      <h1 className=' text-4xl font-bold uppercase'>Welcome!</h1>
     </div>
   )
 }
