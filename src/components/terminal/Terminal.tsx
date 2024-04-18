@@ -114,7 +114,7 @@ function Screen({ children }: ScreenProps) {
   return (
     <div
       className={
-        'bg-black min-h-[350px] max-h-[350px] max-w-[500px] rounded-b-md p-2 overflow-scroll flex flex-col gap-1 bg-opacity-50'
+        'bg-black min-h-[350px] max-h-[350px] max-w-[500px] rounded-b-md p-2 overflow-auto flex flex-col gap-1 bg-opacity-50 scrollbar'
       }>
       {history.map((item, index) => (
         <React.Fragment key={'history-' + index}>{item}</React.Fragment>
