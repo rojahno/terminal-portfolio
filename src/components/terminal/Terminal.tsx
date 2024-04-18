@@ -113,6 +113,7 @@ function Screen({ children }: ScreenProps) {
 
   return (
     <div
+    onClick={() => inputRef.current?.focus()}
       className={
         'bg-black min-h-[350px] max-h-[350px] max-w-[500px] rounded-b-md p-2 overflow-auto flex flex-col gap-1 bg-opacity-50 scrollbar'
       }>
@@ -125,10 +126,10 @@ function Screen({ children }: ScreenProps) {
           setInput={setCommand}
           text={command}
           onKeyPress={handleKeyDown}
+          inputRef={inputRef}
           
         />
       </form>
-      <div ref={inputRef}></div>
     </div>
   )
 }

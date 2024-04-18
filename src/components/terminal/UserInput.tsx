@@ -4,14 +4,16 @@ interface UserInputProps {
   setInput: (input: string) => void
   onKeyPress?: (e: React.KeyboardEvent<HTMLInputElement>) => void
   text: string
+  inputRef: React.RefObject<HTMLInputElement>
 }
 
-export function UserInput({ setInput, onKeyPress, text }: UserInputProps) {
+export function UserInput({ setInput, onKeyPress, text, inputRef }: UserInputProps) {
   return (
     <div className='flex items-center gap-2'>
       <p className='text-[10px] text-green-400'>rojahno@portfolio</p>
       <p className='text-[10px] text-blue-300'>~</p>
       <input
+      ref={inputRef}
         onChange={(e) => {
           setInput(e.target.value)
         }}
