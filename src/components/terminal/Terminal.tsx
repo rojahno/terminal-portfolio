@@ -125,6 +125,7 @@ function Screen({ children }: ScreenProps) {
           setInput={setCommand}
           text={command}
           onKeyPress={handleKeyDown}
+          
         />
       </form>
       <div ref={inputRef}></div>
